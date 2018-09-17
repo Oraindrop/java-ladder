@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LadderGame {
     public static void goGame(int numberOfPlayers, int numberOfLadder){
-        List<Ladder> ladders = makeLadder(numberOfLadder);
+        List<Ladder> ladders = makeLadders(numberOfLadder);
         for(Ladder ladder : ladders){
             makeLines(numberOfPlayers, ladder);
         }
@@ -13,7 +13,7 @@ public class LadderGame {
     }
 
     // Create Ladder instance.
-    public static List<Ladder> makeLadder(int numberOfLadder){
+    public static List<Ladder> makeLadders(int numberOfLadder){
         List<Ladder> ladders = new ArrayList<>();
         for(int i = 0; i < numberOfLadder; i++){
             ladders.add(new Ladder());

@@ -6,13 +6,23 @@ import java.util.Random;
 
 public class Ladder {
     private static final int RANDOM_BOUND = 2;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
 
     private static Random rnd = new Random();
     private List<Integer> lines = new ArrayList<>();;
 
     // Add line(0,1) to lines
     public void makeLine(){
-        this.lines.add(generateRandom());
+        this.lines.add(this.generateValidLine());
+    }
+
+    public int generateValidLine(){
+        int size = lines.size();
+        if(size > ZERO){
+            return lines.get(size - ONE) == ONE ? ZERO : generateRandom();
+        }
+        return generateRandom();
     }
 
     public List<Integer> getLines() {
