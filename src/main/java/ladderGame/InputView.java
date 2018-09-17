@@ -1,4 +1,4 @@
-package ladder;
+package ladderGame;
 
 import java.util.Scanner;
 
