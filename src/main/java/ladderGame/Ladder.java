@@ -32,6 +32,6 @@ public class Ladder {
     }
 
     public List<String> getLines() {
-        return lines;
+        return this.lines;
     }
 }
