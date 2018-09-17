@@ -4,21 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    List<Ladder> ladders;
 
-    public LadderGame(){
-        this.ladders = new ArrayList<>();
+    private static void goGame(int numberOfPlayers, int numberOfLadder){
+        List<Ladder> ladders = makeLadder(numberOfLadder);
+        for(Ladder ladder : ladders){
+            makeLines(numberOfPlayers, ladder);
+        }
+        ResultView.showResult(ladders);
     }
 
-    public void startGame(int numberOfPlayer, int numberOfLadder){
+    private static List<Ladder> makeLadder(int numberOfLadder){
+        List<Ladder> ladders = new ArrayList<>();
         for(int i = 0; i < numberOfLadder; i++){
-            this.ladders.add(new Ladder(numberOfPlayer - 1));
+            ladders.add(new Ladder());
         }
-        ResultView.showResult(this.ladders);
+        return ladders;
+    }
+
+    private static void makeLines(int numberOfPlayer, Ladder ladder){
+        for(int i = 0; i < numberOfPlayer - 1; i++){
+            ladder.makeLine();
+        }
     }
 
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame();
-        ladderGame.startGame(InputView.inputNumberOfPlayer(), InputView.inputHeightOfLadder());
+        LadderGame.goGame(InputView.inputNumberOfPlayer(), InputView.inputHeightOfLadder());
     }
 }

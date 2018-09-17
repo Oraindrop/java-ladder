@@ -11,27 +11,18 @@ public class Ladder {
     private static final String HYPHEN = "-";
     private static Random rnd = new Random();
 
-    private int numberOfLine;
-    private List<String> lines;
+    private List<String> lines = new ArrayList<>();;
 
-    public Ladder(int numberOfLine) {
-        this.numberOfLine = numberOfLine;
-        this.makeLines();
-    }
-
-    public String decideLine(){
-        int randomValue = rnd.nextInt(RANDOM_BOUND);
-        return (randomValue == ZERO) ? SPACE : HYPHEN;
-    }
-
-    public void makeLines(){
-        this.lines = new ArrayList<>();
-        for(int i = 0; i < numberOfLine; i++){
-            this.lines.add(this.decideLine());
-        }
+    public void makeLine(){
+        this.lines.add(decideLine());
     }
 
     public List<String> getLines() {
         return this.lines;
+    }
+
+    private static String decideLine(){
+        int randomValue = rnd.nextInt(RANDOM_BOUND);
+        return (randomValue == ZERO) ? SPACE : HYPHEN;
     }
 }
