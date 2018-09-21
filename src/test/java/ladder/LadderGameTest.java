@@ -1,12 +1,12 @@
-package ladderGame;
+package ladder;
 
 import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladderGame.domain.Ladder;
-import ladderGame.domain.LadderGame;
-import ladderGame.view.InputView;
-import ladderGame.view.ResultView;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,15 +25,15 @@ public class LadderGameTest {
     }
     @Test
     public void generateRandom(){
-        assertTrue(Ladder.generateRandom() == 0 || Ladder.generateRandom() == 1);
+        assertTrue(Ladder.generateRandomBool() == false || Ladder.generateRandomBool() == true);
     }
 
 
     @Test
     public void generateLineUI(){
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(0);
+        List<Boolean> list = new ArrayList<>();
+        list.add(true);
+        list.add(false);
         System.out.println(ResultView.generateLineUI(list));
     }
 
@@ -46,8 +46,8 @@ public class LadderGameTest {
 
         for(Ladder ladder : ladders){
             for(int j = 1; j < ladder.getLines().size(); j++){
-                if(ladder.getLines().get(j-1) == 1){
-                    assertEquals(0, (int)ladder.getLines().get(j));
+                if(ladder.getLines().get(j-1)){
+                    assertEquals(false, ladder.getLines().get(j));
                 }
             }
         }
@@ -56,7 +56,7 @@ public class LadderGameTest {
     @Test
     public void makeNames(){
         String s = "choising,seungmin,osing";
-        List<String> list = InputView.makeNames(s);
+        List<String> list = InputView.doSplit(s);
         assertEquals(3, list.size());
         assertThat(list.get(0)).isEqualTo("choising");
         assertThat(list.get(1)).isEqualTo("seungmin");
@@ -73,8 +73,8 @@ public class LadderGameTest {
 
     @Test
     public void decideLineUI(){
-        int i = 1;
-        int j = 0;
+        boolean i = true;
+        boolean j = false;
         assertThat(ResultView.decideLineUI(i)).isEqualTo("-----");
         assertThat(ResultView.decideLineUI(j)).isEqualTo("     ");
     }

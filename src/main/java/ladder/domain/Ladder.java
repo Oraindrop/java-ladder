@@ -1,4 +1,4 @@
-package ladderGame.domain;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Ladder {
     private static final int ONE = 1;
 
     private static Random rnd = new Random();
-    private List<Integer> lines = new ArrayList<>();;
+    private List<Boolean> lines = new ArrayList<>();;
 
     // Add line(0,1) to lines
     public void makeLine(){
@@ -18,20 +18,23 @@ public class Ladder {
     }
 
     // Don't overlap with line
-    public int generateValidLine(){
+    public boolean generateValidLine(){
         int size = lines.size();
         if(size > ZERO){
-            return lines.get(size - ONE) == ONE ? ZERO : generateRandom();
+            return lines.get(size - ONE) ? false : generateRandomBool();
         }
-        return generateRandom();
+        return generateRandomBool();
     }
 
-    public List<Integer> getLines() {
+    public List<Boolean> getLines() {
         return this.lines;
     }
 
-    // Create randomValue(0,1)
-    public static int generateRandom(){
-        return rnd.nextInt(RANDOM_BOUND);
+    // Create boolean from randomValue
+    public static boolean generateRandomBool(){
+        if(rnd.nextInt(RANDOM_BOUND) == ZERO){
+            return false;
+        }
+        return true;
     }
 }

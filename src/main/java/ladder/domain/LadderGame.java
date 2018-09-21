@@ -1,18 +1,16 @@
-package ladderGame.domain;
+package ladder.domain;
 
-import ladderGame.view.ResultView;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    public static void goGame(List<String> namesOfPlayers, int numberOfLadder){
-        List<Ladder> ladders = makeLadders(numberOfLadder);
+    public static void fillLadder(List<String> namesOfPlayers, List<Ladder> ladders){
         int numberOfPlayers = namesOfPlayers.size();
         for(Ladder ladder : ladders){
             makeLines(numberOfPlayers, ladder);
         }
-        ResultView.showResult(namesOfPlayers, ladders);
     }
 
     // Create Ladder instance
