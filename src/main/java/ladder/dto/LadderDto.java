@@ -5,9 +5,9 @@ import ladder.domain.Ladder;
 import java.util.List;
 
 public class LadderDto {
-    List<String> names;
-    List<Ladder> ladders;
-    List<String> results;
+    private List<String> names;
+    private List<Ladder> ladders;
+    private List<String> results;
 
     public LadderDto(List<String> names, List<Ladder> ladders) {
         this.names = names;

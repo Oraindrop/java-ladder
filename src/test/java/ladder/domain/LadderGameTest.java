@@ -1,39 +1,32 @@
 package ladder.domain;
 
-import static org.junit.Assert.*;
-import org.junit.Assert;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import ladder.dto.LadderDto;
 import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class LadderGameTest {
     @Test
-    public void makeLadder(){
-        Assert.assertEquals(3, LadderGame.makeLadders(3).size());
+    public void makeLadders(){
+        assertThat(LadderGame.makeLadders(3).size()).isEqualTo(3);
     }
+
     @Test
     public void makeLines(){
         Ladder ladder = new Ladder();
         LadderGame.makeLines(3, ladder);
-        assertEquals(2, ladder.getLines().size());
-    }
-    @Test
-    public void generateRandom(){
-        assertTrue(Ladder.generateRandomBool() == false || Ladder.generateRandomBool() == true);
+        assertThat(ladder.getLine().getLines().size()).isEqualTo(2);
     }
 
     @Test
-    public void validLine(){
+    public void fillLadder(){
+        List<String> names = Arrays.asList("pobi", "honux", "choising", "taesu");
         List<Ladder> ladders = LadderGame.makeLadders(5);
-        for(Ladder ladder : ladders){
-            LadderGame.makeLines(3, ladder);
-        }
-
-        for(Ladder ladder : ladders){
-            for(int j = 1; j < ladder.getLines().size(); j++){
-                if(ladder.getLines().get(j-1)){
-                    assertEquals(false, ladder.getLines().get(j));
-                }
-            }
-        }
+        LadderDto ladderDto = new LadderDto(names, ladders);
+        LadderGame.fillLadder(ladderDto);
+        assertThat(ladders.get(0).getLine().getLines().size()).isEqualTo(3);
     }
 }

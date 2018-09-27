@@ -38,13 +38,10 @@ public class RideDownLine {
         List<Ladder> ladders = this.ladderDto.getLadders();
         int height = ZERO;
         while(height < ladders.size()){
-            List<Boolean> lines = ladders.get(height).getLines();
-            location = Point.startMove(location, lines);
+            Line line = ladders.get(height).getLine();
+            location = line.decideMove(location);
             height++;
         }
         return location;
     }
-
-
-
 }

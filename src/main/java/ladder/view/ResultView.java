@@ -23,7 +23,7 @@ public class ResultView {
         System.out.println(LADDER_RESULT);
         System.out.println(generateNameOrResultUI(ladderDto.getNames()));
         for(Ladder ladder : ladderDto.getLadders()){
-            System.out.println(generateLineUI(ladder.getLines()));
+            System.out.println(generateLineUI(ladder.getLine().getLines()));
         }
         System.out.println(generateNameOrResultUI(ladderDto.getResults()));
     }
