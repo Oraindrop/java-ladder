@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.dto.LadderDto;
 
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class ResultView {
     private static StringBuilder sb = new StringBuilder();
 
     // print Ladder Line
-    public static void showLadderResult(List<String> names, List<Ladder> laddersOfGame, List<String> results){
+    public static void showLadderResult(LadderDto ladderDto){
         System.out.println(LADDER_RESULT);
-        System.out.println(generateNameOrResultUI(names));
-        for(Ladder ladder : laddersOfGame){
+        System.out.println(generateNameOrResultUI(ladderDto.getNames()));
+        for(Ladder ladder : ladderDto.getLadders()){
             System.out.println(generateLineUI(ladder.getLines()));
         }
-        System.out.println(generateNameOrResultUI(results));
+        System.out.println(generateNameOrResultUI(ladderDto.getResults()));
     }
 
     // Set Five Length.
@@ -79,9 +80,9 @@ public class ResultView {
     }
 
     // print everyone (name : result)
-    public static void everyOneResultUI(List<String> names, List<Integer> indexs, List<String> results){
-        for(int i = ZERO; i < names.size(); i++){
-            System.out.println(names.get(i) + " : " + results.get(indexs.get(i)));
+    public static void everyOneResultUI(LadderDto ladderDto, List<Integer> indexs){
+        for(int i = ZERO; i < ladderDto.getNamesSize(); i++){
+            System.out.println(ladderDto.getNames().get(i) + " : " + ladderDto.getResults().get(indexs.get(i)));
         }
     }
 

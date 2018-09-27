@@ -1,18 +1,11 @@
 package ladder.domain;
 
-import ladder.view.ResultView;
+import ladder.dto.LadderDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    public static void fillLadder(List<String> namesOfPlayers, List<Ladder> ladders){
-        int numberOfPlayers = namesOfPlayers.size();
-        for(Ladder ladder : ladders){
-            makeLines(numberOfPlayers, ladder);
-        }
-    }
-
     // Create Ladder instance
     public static List<Ladder> makeLadders(int numberOfLadder){
         List<Ladder> ladders = new ArrayList<>();
@@ -20,6 +13,15 @@ public class LadderGame {
             ladders.add(new Ladder());
         }
         return ladders;
+    }
+
+    // Fill ladders with line
+    public static void fillLadder(LadderDto ladderDto){
+        List<Ladder> ladders = ladderDto.getLadders();
+        int numberOfPlayers = ladderDto.getNamesSize();
+        for(Ladder ladder : ladders){
+            makeLines(numberOfPlayers, ladder);
+        }
     }
 
     // Call Ladder's makeLine method

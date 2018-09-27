@@ -32,9 +32,6 @@ public class Ladder {
 
     // Create boolean from randomValue
     public static boolean generateRandomBool(){
-        if(rnd.nextInt(RANDOM_BOUND) == ZERO){
-            return false;
-        }
-        return true;
+        return rnd.nextInt(RANDOM_BOUND) != ZERO;
     }
 }
